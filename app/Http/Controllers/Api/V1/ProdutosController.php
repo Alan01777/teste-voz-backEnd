@@ -90,8 +90,8 @@ class ProdutosController extends Controller
             $data = $request->validated();
             $produto = $this->service->updateById($data, $id);
             return response()->json($produto);
-        } catch (ProdutoNotCreatedException|ProdutoNotUpdatedException $e) {
-            return response()->json(['error' => $e->getMessage()], ResponseAlias::HTTP_NOT_FOUND);
+        } catch (ProdutoNotFoundException | ProdutoNotUpdatedException $e) {
+            return response()->json(['error' => $e->getMessage()], ResponseAlias::HTTP_BAD_REQUEST);
         }
     }
 

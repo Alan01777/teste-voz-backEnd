@@ -93,7 +93,7 @@ class CategoriasController extends Controller
             $updated = $this->service->updateById($data, $id);
             return response()->json($updated);
         } catch (CategoriaNotFoundException | CategoriaNotUpdatedException $e) {
-            return response()->json(['error' => $e->getMessage()], ResponseAlias::HTTP_NOT_FOUND);
+            return response()->json(['error' => $e->getMessage()], ResponseAlias::HTTP_BAD_REQUEST);
         }
     }
 
