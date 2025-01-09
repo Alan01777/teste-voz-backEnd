@@ -28,7 +28,7 @@ class ProdutosControllerTest extends TestCase
     }
 
     /**
-     * Test the listing of all products.
+     * Testa a listagem de todos os produtos.
      */
     public function test_it_can_list_all_products(): void
     {
@@ -42,7 +42,7 @@ class ProdutosControllerTest extends TestCase
     }
 
     /**
-     * Test the display of a single product.
+     * Testa a exibição de um único produto.
      */
     public function test_it_can_show_a_product(): void
     {
@@ -56,7 +56,7 @@ class ProdutosControllerTest extends TestCase
     }
 
     /**
-     * Test the display of a non-existent product.
+     * Testa a exibição de um produto inexistente.
      */
     public function test_it_returns_404_if_product_not_found(): void
     {
@@ -68,7 +68,7 @@ class ProdutosControllerTest extends TestCase
     }
 
     /**
-     * Test the creation of a new product.
+     * Testa a criação de um novo produto.
      */
     public function test_it_can_create_a_product(): void
     {
@@ -84,7 +84,7 @@ class ProdutosControllerTest extends TestCase
     }
 
     /**
-     * Test the creation of a new product with invalid data.
+     * Testa a criação de um novo produto com dados inválidos.
      */
     public function test_it_returns_422_if_product_creation_fails(): void
     {
@@ -97,7 +97,7 @@ class ProdutosControllerTest extends TestCase
     }
 
     /**
-     * Test the update of an existing product.
+     * Testa a atualização de um produto existente.
      */
     public function test_it_can_update_a_product(): void
     {
@@ -113,7 +113,7 @@ class ProdutosControllerTest extends TestCase
     }
 
     /**
-     * Test the update of a product with invalid data.
+     * Testa a atualização de um produto com dados inválidos.
      */
     public function test_it_returns_422_if_product_update_fails(): void
     {
@@ -126,7 +126,7 @@ class ProdutosControllerTest extends TestCase
     }
 
     /**
-     * Test the deletion of a product.
+     * Testa a exclusão de um produto.
      */
     public function test_it_can_delete_a_product(): void
     {
@@ -138,7 +138,7 @@ class ProdutosControllerTest extends TestCase
     }
 
     /**
-     * Test the deletion of a non-existent product.
+     * Testa a exclusão de um produto inexistente.
      */
     public function test_it_returns_404_if_product_deletion_fails(): void
     {

@@ -84,7 +84,6 @@ class ProdutoServiceTest extends TestCase
      * Testa a exclusão de um produto.
      *
      * @throws ProdutoNotFoundException
-     * @throws ProdutoNotDeletedException
      */
     public function test_it_can_delete_a_produto(): void
     {
@@ -98,7 +97,7 @@ class ProdutoServiceTest extends TestCase
     /**
      * Testa a exclusão de um produto com ID inválido.
      *
-     * @throws ProdutoNotDeletedException
+     * @throws ProdutoNotFoundException
      */
     public function test_it_throws_exception_when_deleting_produto_with_invalid_id(): void
     {

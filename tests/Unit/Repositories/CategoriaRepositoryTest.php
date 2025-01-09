@@ -13,10 +13,10 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 /**
- * Class CategoriaRepositoryTest
+ * Classe CategoriaRepositoryTest
  *
- * This class contains unit tests for the CategoriaRepository.
- * It uses the RefreshDatabase trait to ensure a clean state for each test.
+ * Esta classe contém testes unitários para o CategoriaRepository.
+ * Ela usa o trait RefreshDatabase para garantir um estado limpo para cada teste.
  */
 class CategoriaRepositoryTest extends TestCase
 {
@@ -28,7 +28,7 @@ class CategoriaRepositoryTest extends TestCase
     protected CategoriasRepositoryInterface $repository;
 
     /**
-     * Sets up the test environment.
+     * Configura o ambiente de teste.
      *
      * @throws BindingResolutionException
      */
@@ -39,10 +39,10 @@ class CategoriaRepositoryTest extends TestCase
     }
 
     /**
-     * Tests the creation of a Categoria.
+     * Testa a criação de uma Categoria.
      *
      * @dataProvider categoriaProvider
-     * @param string $nome The name of the category to be created.
+     * @param string $nome O nome da categoria a ser criada.
      * @return void
      * @throws CategoriaNotCreatedException
      */
@@ -55,10 +55,10 @@ class CategoriaRepositoryTest extends TestCase
     }
 
     /**
-     * Tests the update of a Categoria.
+     * Testa a atualização de uma Categoria.
      *
      * @dataProvider categoriaProvider
-     * @param string $nome The name of the category to be updated.
+     * @param string $nome O nome da categoria a ser atualizada.
      * @return void
      * @throws CategoriaNotFoundException
      * @throws CategoriaNotCreatedException
@@ -73,7 +73,7 @@ class CategoriaRepositoryTest extends TestCase
     }
 
     /**
-     * Data provider for test_it_can_create_a_categoria.
+     * Provedor de dados para test_it_can_create_a_categoria.
      *
      * @return array
      */
@@ -87,11 +87,12 @@ class CategoriaRepositoryTest extends TestCase
     }
 
     /**
-     * Tests getting a Categoria by an invalid ID.
+     * Testa a obtenção de uma Categoria por um ID inválido.
      *
      * @dataProvider invalidIdProvider
-     * @param int $invalidId The invalid ID to be tested.
+     * @param int $invalidId O ID inválido a ser testado.
      * @return void
+     * @throws CategoriaNotFoundException
      */
     #[DataProvider('invalidIdProvider')]
     public function test_it_throws_exception_when_getting_categoria_by_invalid_id(int $invalidId): void
@@ -101,10 +102,10 @@ class CategoriaRepositoryTest extends TestCase
     }
 
     /**
-     * Tests updating a Categoria by an invalid ID.
+     * Testa a atualização de uma Categoria por um ID inválido.
      *
      * @dataProvider invalidIdProvider
-     * @param int $invalidId The invalid ID to be tested.
+     * @param int $invalidId O ID inválido a ser testado.
      * @return void
      * @throws CategoriaNotUpdatedException
      */
@@ -116,12 +117,12 @@ class CategoriaRepositoryTest extends TestCase
     }
 
     /**
-     * Tests deleting a Categoria by an invalid ID.
+     * Testa a exclusão de uma Categoria por um ID inválido.
      *
      * @dataProvider invalidIdProvider
-     * @param int $invalidId The invalid ID to be tested.
+     * @param int $invalidId O ID inválido a ser testado.
      * @return void
-     * @throws CategoriaNotDeletedException
+     * @throws CategoriaNotFoundException
      */
     #[DataProvider('invalidIdProvider')]
     public function test_it_throws_exception_when_deleting_categoria_by_invalid_id(int $invalidId): void
@@ -131,7 +132,7 @@ class CategoriaRepositoryTest extends TestCase
     }
 
     /**
-     * Data provider for invalid ID tests.
+     * Provedor de dados para testes de ID inválido.
      *
      * @return array
      */
