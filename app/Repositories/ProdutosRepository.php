@@ -4,12 +4,10 @@ namespace App\Repositories;
 
 use App\Contracts\Repositories\ProdutosRepositoryInterface;
 use App\Exceptions\Repositories\Produto\ProdutoNotCreatedException;
-use App\Exceptions\Repositories\Produto\ProdutoNotDeletedException;
 use App\Exceptions\Repositories\Produto\ProdutoNotFoundException;
 use App\Exceptions\Repositories\Produto\ProdutoNotUpdatedException;
 use App\Models\Produtos;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class ProdutosRepository implements ProdutosRepositoryInterface
 {
@@ -24,9 +22,9 @@ class ProdutosRepository implements ProdutosRepositoryInterface
     /**
      * @inheritDoc
      */
-    public function getAll(): Collection
+    public function getAll(): LengthAwarePaginator
     {
-        return $this->model->with('categoria')->get();
+        return $this->model->with('categoria')->paginate(10);
     }
 
     /**

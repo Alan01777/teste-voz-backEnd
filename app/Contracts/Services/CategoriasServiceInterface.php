@@ -3,11 +3,10 @@
 namespace App\Contracts\Services;
 
 use App\Exceptions\Repositories\Categoria\CategoriaNotCreatedException;
-use App\Exceptions\Repositories\Categoria\CategoriaNotDeletedException;
 use App\Exceptions\Repositories\Categoria\CategoriaNotFoundException;
 use App\Exceptions\Repositories\Categoria\CategoriaNotUpdatedException;
 use App\Models\Categorias;
-use \Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 /**
  * Interface CategoriasServiceInterface
@@ -23,9 +22,9 @@ interface CategoriasServiceInterface
     /**
      * Recupera todas as categorias.
      *
-     * @return Collection
+     * @return LengthAwarePaginator
      */
-    public function getAll(): Collection;
+    public function getAll(): LengthAwarePaginator;
 
     /**
      * Recupera uma categoria pelo seu ID.

@@ -4,7 +4,6 @@ namespace Tests\Unit\Services;
 
 use App\Contracts\Repositories\ProdutosRepositoryInterface;
 use App\Exceptions\Repositories\Produto\ProdutoNotCreatedException;
-use App\Exceptions\Repositories\Produto\ProdutoNotDeletedException;
 use App\Exceptions\Repositories\Produto\ProdutoNotFoundException;
 use App\Exceptions\Repositories\Produto\ProdutoNotUpdatedException;
 use App\Models\Produtos;

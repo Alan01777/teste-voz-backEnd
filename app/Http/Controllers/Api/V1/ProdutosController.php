@@ -8,6 +8,7 @@ use App\Exceptions\Repositories\Produto\ProdutoNotDeletedException;
 use App\Exceptions\Repositories\Produto\ProdutoNotFoundException;
 use App\Exceptions\Repositories\Produto\ProdutoNotUpdatedException;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProdutoCollection;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\Api\V1\ProdutosRequest as Request;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
@@ -41,7 +42,7 @@ class ProdutosController extends Controller
      */
     public function index(): JsonResponse
     {
-        return response()->json($this->service->getAll());
+        return response()->json(new ProdutoCollection($this->service->getAll()));
     }
 
     /**

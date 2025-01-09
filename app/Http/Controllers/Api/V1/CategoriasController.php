@@ -9,6 +9,8 @@ use App\Exceptions\Repositories\Categoria\CategoriaNotUpdatedException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\CategoriasRequest as Request;
 use App\Contracts\Services\CategoriasServiceInterface;
+use App\Http\Resources\CategoriaCollection;
+use App\Http\Resources\CategoriaResource;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
@@ -43,7 +45,7 @@ class CategoriasController extends Controller
      */
     public function index(): JsonResponse
     {
-        return response()->json($this->service->getAll());
+        return response()->json(new CategoriaCollection($this->service->getAll()));
     }
 
     /**
@@ -56,7 +58,7 @@ class CategoriasController extends Controller
     {
         try {
             $categoria = $this->service->getById($id);
-            return response()->json($categoria);
+            return response()->json(new CategoriaResource($categoria));
         } catch (CategoriaNotFoundException $e) {
             return response()->json(['error' => $e->getMessage()], ResponseAlias::HTTP_NOT_FOUND);
         }
@@ -73,7 +75,7 @@ class CategoriasController extends Controller
         try {
             $data = $request->validated();
             $categoria = $this->service->create($data);
-            return response()->json($categoria, ResponseAlias::HTTP_CREATED);
+            return response()->json(new CategoriaResource($categoria), ResponseAlias::HTTP_CREATED);
         } catch (CategoriaNotCreatedException $e) {
             return response()->json(['error' => $e->getMessage()], ResponseAlias::HTTP_BAD_REQUEST);
         }
@@ -91,7 +93,7 @@ class CategoriasController extends Controller
         try {
             $data = $request->validated();
             $updated = $this->service->updateById($data, $id);
-            return response()->json($updated);
+            return response()->json(new CategoriaResource($updated), ResponseAlias::HTTP_OK);
         } catch (CategoriaNotFoundException $e) {
             return response()->json(['error' => $e->getMessage()], ResponseAlias::HTTP_NOT_FOUND);
         } catch (CategoriaNotUpdatedException $e){

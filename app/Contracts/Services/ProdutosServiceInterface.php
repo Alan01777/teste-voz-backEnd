@@ -3,20 +3,18 @@
 namespace App\Contracts\Services;
 
 use App\Exceptions\Repositories\Produto\ProdutoNotCreatedException;
-use App\Exceptions\Repositories\Produto\ProdutoNotDeletedException;
 use App\Exceptions\Repositories\Produto\ProdutoNotFoundException;
 use App\Exceptions\Repositories\Produto\ProdutoNotUpdatedException;
 use App\Models\Produtos;
-use Illuminate\Database\Eloquent\Collection;
-
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 interface ProdutosServiceInterface
 {
     /**
      * Recupera todos os produtos.
      *
-     * @return Collection
+     * @return LengthAwarePaginator
      */
-    public function getAll(): Collection;
+    public function getAll(): LengthAwarePaginator;
 
     /**
      * Recupera um produto pelo seu ID.

@@ -3,14 +3,13 @@
 namespace Tests\Feature\Http\Controllers;
 
 use App\Contracts\Services\ProdutosServiceInterface;
-use App\Exceptions\Repositories\Produto\ProdutoNotCreatedException;
-use App\Exceptions\Repositories\Produto\ProdutoNotDeletedException;
 use App\Exceptions\Repositories\Produto\ProdutoNotFoundException;
-use App\Exceptions\Repositories\Produto\ProdutoNotUpdatedException;
 use App\Models\Categorias;
 use App\Models\Produtos;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 use Mockery;
 use Tests\TestCase;
 
@@ -33,12 +32,25 @@ class ProdutosControllerTest extends TestCase
     public function test_it_can_list_all_products(): void
     {
         $produtos = Produtos::factory()->count(3)->make();
-        $this->mockService->shouldReceive('getAll')->once()->andReturn($produtos);
+        $paginator = new LengthAwarePaginator($produtos, 3, 10, 1, [
+            'path' => Paginator::resolveCurrentPath(),
+        ]);
+
+        $this->mockService->shouldReceive('getAll')->once()->andReturn($paginator);
 
         $response = $this->getJson(route('produtos.index'));
 
         $response->assertStatus(200)
-                 ->assertJson($produtos->toArray());
+            ->assertJson([
+                'data' => $produtos->toArray(),
+                'pagination' => [
+                    'total' => 3,
+                    'count' => 3,
+                    'per_page' => 10,
+                    'current_page' => 1,
+                    'total_pages' => 1,
+                ],
+            ]);
     }
 
     /**

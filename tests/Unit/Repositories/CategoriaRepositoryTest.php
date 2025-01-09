@@ -4,7 +4,6 @@ namespace Tests\Unit\Repositories;
 
 use App\Contracts\Repositories\CategoriasRepositoryInterface;
 use App\Exceptions\Repositories\Categoria\CategoriaNotCreatedException;
-use App\Exceptions\Repositories\Categoria\CategoriaNotDeletedException;
 use App\Exceptions\Repositories\Categoria\CategoriaNotFoundException;
 use App\Exceptions\Repositories\Categoria\CategoriaNotUpdatedException;
 use Illuminate\Contracts\Container\BindingResolutionException;

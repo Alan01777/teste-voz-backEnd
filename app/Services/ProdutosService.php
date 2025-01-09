@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Contracts\Repositories\ProdutosRepositoryInterface;
 use App\Contracts\Services\ProdutosServiceInterface;
 use App\Models\Produtos;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ProdutosService implements ProdutosServiceInterface
 {
@@ -20,7 +20,7 @@ class ProdutosService implements ProdutosServiceInterface
     /**
      * @inheritDoc
      */
-    public function getAll(): Collection
+    public function getAll(): LengthAwarePaginator
     {
         return $this->repository->getAll();
     }
