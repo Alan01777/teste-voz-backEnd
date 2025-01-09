@@ -31,7 +31,6 @@ class ProdutosRepository implements ProdutosRepositoryInterface
 
     /**
      * @inheritDoc
-     * @throws ProdutoNotFoundException
      */
     public function getById(int $id): ?Produtos
     {
@@ -56,7 +55,6 @@ class ProdutosRepository implements ProdutosRepositoryInterface
 
     /**
      * @inheritDoc
-     * @throws ProdutoNotUpdatedException|ProdutoNotFoundException
      */
     public function updateById(array $data, int $id): ?Produtos
     {
@@ -69,14 +67,13 @@ class ProdutosRepository implements ProdutosRepositoryInterface
 
     /**
      * @inheritDoc
-     * @throws ProdutoNotDeletedException|ProdutoNotFoundException
      */
     public function deleteById(int $id): bool
     {
         $produto = $this->getById($id);
-        if(!$produto->delete()){
-            throw new ProdutoNotDeletedException();
+        if (!$produto->delete()) {
+            throw new ProdutoNotFoundException();
         }
-        return $produto->delete();
+        return true;
     }
 }

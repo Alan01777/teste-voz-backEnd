@@ -60,7 +60,7 @@ interface CategoriasRepositoryInterface
      *
      * @param int $id
      * @return bool
-     * @throws CategoriaNotDeletedException|CategoriaNotFoundException
+     * @throws CategoriaNotFoundException
      */
     public function deleteById(int $id) : bool;
 }

@@ -53,7 +53,6 @@ class CategoriasRepository implements CategoriasRepositoryInterface
 
     /**
      * @inheritDoc
-     * @throws CategoriaNotFoundException|CategoriaNotUpdatedException
      */
     public function updateById(array $data, int $id): ?Categorias
     {
@@ -66,13 +65,12 @@ class CategoriasRepository implements CategoriasRepositoryInterface
 
     /**
      * @inheritDoc
-     * @throws CategoriaNotFoundException|CategoriaNotDeletedException
      */
     public function deleteById(int $id): bool
     {
         $categoria = $this->getById($id);
         if (!$categoria->delete()) {
-            throw new CategoriaNotDeletedException();
+            throw new CategoriaNotFoundException();
         }
         return true;
     }

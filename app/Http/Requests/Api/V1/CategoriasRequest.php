@@ -23,13 +23,8 @@ class CategoriasRequest extends FormRequest
      */
     public function rules(): array
     {
-        if($this->isMethod('post')) {
-            return [
-                'nome' => 'required|string|max:255',
-            ];
-        }
         return [
-            'nome' => 'string|max:255',
+            'nome' => 'required|string|max:255'
         ];
     }
 

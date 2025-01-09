@@ -2,6 +2,10 @@
 
 namespace App\Contracts\Services;
 
+use App\Exceptions\Repositories\Categoria\CategoriaNotCreatedException;
+use App\Exceptions\Repositories\Categoria\CategoriaNotDeletedException;
+use App\Exceptions\Repositories\Categoria\CategoriaNotFoundException;
+use App\Exceptions\Repositories\Categoria\CategoriaNotUpdatedException;
 use App\Models\Categorias;
 use \Illuminate\Database\Eloquent\Collection;
 
@@ -28,6 +32,7 @@ interface CategoriasServiceInterface
      *
      * @param int $id
      * @return Categorias|null
+     * @throws CategoriaNotFoundException
      */
     public function getById(int $id): ?Categorias;
 
@@ -36,6 +41,7 @@ interface CategoriasServiceInterface
      *
      * @param array $data
      * @return Categorias
+     * @throws CategoriaNotCreatedException
      */
     public function create(array $data): Categorias;
 
@@ -45,6 +51,7 @@ interface CategoriasServiceInterface
      * @param array $data
      * @param int $id
      * @return Categorias|null
+     * @throws CategoriaNotFoundException|CategoriaNotUpdatedException
      */
     public function updateById(array $data, int $id): ?Categorias;
 
@@ -53,6 +60,7 @@ interface CategoriasServiceInterface
      *
      * @param int $id
      * @return bool
+     * @throws CategoriaNotFoundException
      */
     public function deleteById(int $id): bool;
 }

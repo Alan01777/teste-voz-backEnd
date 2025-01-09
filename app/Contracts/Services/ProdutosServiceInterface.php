@@ -2,6 +2,10 @@
 
 namespace App\Contracts\Services;
 
+use App\Exceptions\Repositories\Produto\ProdutoNotCreatedException;
+use App\Exceptions\Repositories\Produto\ProdutoNotDeletedException;
+use App\Exceptions\Repositories\Produto\ProdutoNotFoundException;
+use App\Exceptions\Repositories\Produto\ProdutoNotUpdatedException;
 use App\Models\Produtos;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -19,6 +23,7 @@ interface ProdutosServiceInterface
      *
      * @param int $id
      * @return Produtos|null
+     * @throws ProdutoNotFoundException
      */
     public function getById(int $id): ?Produtos;
 
@@ -27,6 +32,7 @@ interface ProdutosServiceInterface
      *
      * @param array $data
      * @return Produtos
+     * @throws ProdutoNotCreatedException
      */
     public function create(array $data): Produtos;
 
@@ -36,6 +42,7 @@ interface ProdutosServiceInterface
      * @param array $data
      * @param int $id
      * @return Produtos|null
+     * @throws ProdutoNotFoundException|ProdutoNotUpdatedException
      */
     public function updateById(array $data, int $id): ?Produtos;
 
@@ -44,6 +51,7 @@ interface ProdutosServiceInterface
      *
      * @param int $id
      * @return bool
+     * @throws ProdutoNotFoundException
      */
     public function deleteById(int $id): bool;
 }

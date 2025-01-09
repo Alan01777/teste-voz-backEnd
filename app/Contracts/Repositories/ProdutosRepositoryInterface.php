@@ -31,6 +31,7 @@ interface ProdutosRepositoryInterface
      *
      * @param int $id
      * @return Produtos|null
+     * @throws ProdutoNotFoundException
      */
     public function getById(int $id): ?Produtos;
 
@@ -59,7 +60,7 @@ interface ProdutosRepositoryInterface
      *
      * @param int $id
      * @return bool
-     * @throws ProdutoNotFoundException|ProdutoNotDeletedException
+     * @throws ProdutoNotFoundException
      */
     public function deleteById(int $id) : bool;
 }

@@ -92,7 +92,9 @@ class CategoriasController extends Controller
             $data = $request->validated();
             $updated = $this->service->updateById($data, $id);
             return response()->json($updated);
-        } catch (CategoriaNotFoundException | CategoriaNotUpdatedException $e) {
+        } catch (CategoriaNotFoundException $e) {
+            return response()->json(['error' => $e->getMessage()], ResponseAlias::HTTP_NOT_FOUND);
+        } catch (CategoriaNotUpdatedException $e){
             return response()->json(['error' => $e->getMessage()], ResponseAlias::HTTP_BAD_REQUEST);
         }
     }
@@ -108,7 +110,7 @@ class CategoriasController extends Controller
         try {
             $this->service->deleteById($id);
             return response()->json(null, ResponseAlias::HTTP_NO_CONTENT);
-        } catch (CategoriaNotFoundException | CategoriaNotDeletedException $e) {
+        } catch (CategoriaNotFoundException $e) {
             return response()->json(['error' => $e->getMessage()], ResponseAlias::HTTP_NOT_FOUND);
         }
     }

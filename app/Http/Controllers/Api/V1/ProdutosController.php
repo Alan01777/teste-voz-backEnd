@@ -90,8 +90,10 @@ class ProdutosController extends Controller
             $data = $request->validated();
             $produto = $this->service->updateById($data, $id);
             return response()->json($produto);
-        } catch (ProdutoNotFoundException | ProdutoNotUpdatedException $e) {
+        } catch (ProdutoNotFoundException $e) {
             return response()->json(['error' => $e->getMessage()], ResponseAlias::HTTP_BAD_REQUEST);
+        } catch (ProdutoNotUpdatedException $e) {
+            return response()->json(['error' => $e->getMessage()], ResponseAlias::HTTP_NOT_FOUND);
         }
     }
 
@@ -106,7 +108,7 @@ class ProdutosController extends Controller
         try{
             $this->service->deleteById($id);
             return response()->json(null, ResponseAlias::HTTP_NO_CONTENT);
-        } catch (ProdutoNotFoundException|ProdutoNotDeletedException $e) {
+        } catch (ProdutoNotFoundException $e) {
             return response()->json(['error' => $e->getMessage()], ResponseAlias::HTTP_NOT_FOUND);
         }
     }

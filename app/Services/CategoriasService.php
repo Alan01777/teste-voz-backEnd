@@ -4,6 +4,10 @@ namespace App\Services;
 
 use App\Contracts\Repositories\CategoriasRepositoryInterface;
 use App\Contracts\Services\CategoriasServiceInterface;
+use App\Exceptions\Repositories\Categoria\CategoriaNotCreatedException;
+use App\Exceptions\Repositories\Categoria\CategoriaNotDeletedException;
+use App\Exceptions\Repositories\Categoria\CategoriaNotFoundException;
+use App\Exceptions\Repositories\Categoria\CategoriaNotUpdatedException;
 use App\Models\Categorias;
 use Illuminate\Database\Eloquent\Collection;
 
