@@ -68,9 +68,9 @@ class CategoriasController extends Controller
             $this->service->deleteById($id);
             return response()->json(null, ResponseAlias::HTTP_NO_CONTENT);
         } catch (CategoriaNotFoundException $e) {
-            return response()->json(['error' => ['type' => 'CategoriaNotFoundException', 'message' => $e->getMessage(), 'code' => $e->getCode()]], ResponseAlias::HTTP_NOT_FOUND);
+            return response()->json(['error' => ['type' => 'CategoriaNotFound', 'message' => $e->getMessage(), 'code' => $e->getCode()]], ResponseAlias::HTTP_NOT_FOUND);
         } catch (CategoriaNotDeletedException $e) {
-            return response()->json(['error' => ['type' => 'CategoriaNotDeletedException', 'message' => $e->getMessage(), 'code' => $e->getCode()]], ResponseAlias::HTTP_BAD_REQUEST);
+            return response()->json(['error' => ['type' => 'CategoriaNotDeleted', 'message' => $e->getMessage(), 'code' => $e->getCode()]], ResponseAlias::HTTP_BAD_REQUEST);
         }
     }
 }
