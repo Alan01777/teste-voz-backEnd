@@ -16,18 +16,38 @@ use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class CategoriasController extends Controller
 {
+    /**
+     * @var CategoriasServiceInterface
+     */
     protected CategoriasServiceInterface $service;
 
+    /**
+     * Construtor do CategoriasController.
+     *
+     * @param CategoriasServiceInterface $service
+     */
     public function __construct(CategoriasServiceInterface $service)
     {
         $this->service = $service;
     }
 
+    /**
+     * Exibe uma lista de categorias.
+     *
+     * @return JsonResponse
+     */
     public function index(): JsonResponse
     {
         return response()->json(new CategoriaCollection($this->service->getAll()));
     }
 
+    /**
+     * Exibe uma categoria específica.
+     *
+     * @param int $id
+     * @return JsonResponse
+     * @throws CategoriaNotFoundException
+     */
     public function show(int $id): JsonResponse
     {
         try {
@@ -38,6 +58,13 @@ class CategoriasController extends Controller
         }
     }
 
+    /**
+     * Cria uma nova categoria.
+     *
+     * @param Request $request
+     * @return JsonResponse
+     * @throws CategoriaNotCreatedException
+     */
     public function store(Request $request): JsonResponse
     {
         try {
@@ -49,6 +76,15 @@ class CategoriasController extends Controller
         }
     }
 
+    /**
+     * Atualiza uma categoria específica.
+     *
+     * @param Request $request
+     * @param int $id
+     * @return JsonResponse
+     * @throws CategoriaNotFoundException
+     * @throws CategoriaNotUpdatedException
+     */
     public function update(Request $request, int $id): JsonResponse
     {
         try {
@@ -62,6 +98,14 @@ class CategoriasController extends Controller
         }
     }
 
+    /**
+     * Remove uma categoria específica.
+     *
+     * @param int $id
+     * @return JsonResponse
+     * @throws CategoriaNotFoundException
+     * @throws CategoriaNotDeletedException
+     */
     public function destroy(int $id): JsonResponse
     {
         try {
