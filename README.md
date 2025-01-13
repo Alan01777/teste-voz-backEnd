@@ -2,13 +2,14 @@
 
 ## 📄 Descrição
 
-Este projeto é uma aplicação backend desenvolvida em **PHP** utilizando o framework **Laravel** e **PostgreSQL** como banco de dados. A aplicação implementa uma API CRUD para gerenciar as entidades "Produtos" e "Categorias".
+Este projeto é uma aplicação backend desenvolvida em **PHP** utilizando o framework **Laravel** e **PostgreSQL** como
+banco de dados. A aplicação implementa uma API CRUD para gerenciar as entidades "Produtos" e "Categorias".
 
 ## 📋 Instruções de Instalação
 
 1. **Clone** este repositório para o seu ambiente local:
     ```bash
-    git clone https://github.com/Alan01777/teste-voz-backEnd.git
+    git clone https://github.com/Alan01777/teste-voz-backEnd
     ```
 
 2. **Instale** as dependências do PHP utilizando o Composer:
@@ -16,22 +17,17 @@ Este projeto é uma aplicação backend desenvolvida em **PHP** utilizando o fra
     composer install
     ```
 
-3. **Instale** as dependências do JavaScript utilizando o npm:
-    ```bash
-    npm install
-    ```
-
-4. **Copie** o arquivo `.env.example` para `.env` e configure as variáveis de ambiente:
+3. **Copie** o arquivo `.env.example` para `.env` e configure as variáveis de ambiente:
     ```bash
     cp .env.example .env
     ```
 
-5. **Gere** a chave da aplicação Laravel:
+4. **Gere** a chave da aplicação Laravel:
     ```bash
     php artisan key:generate
     ```
 
-6. **Configure** o banco de dados no arquivo `.env`:
+5. **Configure** o banco de dados no arquivo `.env`:
     ```dotenv
     DB_CONNECTION=pgsql
     DB_HOST=postgres
@@ -42,12 +38,12 @@ Este projeto é uma aplicação backend desenvolvida em **PHP** utilizando o fra
     SSL_MODE=prefer
     ```
 
-7. **Execute** as migrações para criar as tabelas no banco de dados:
+6. **Execute** as migrações para criar as tabelas no banco de dados:
     ```bash
     php artisan migrate
     ```
 
-8. **Inicie** o servidor de desenvolvimento:
+7. **Inicie** o servidor de desenvolvimento:
     ```bash
     php artisan serve
     ```
@@ -97,7 +93,15 @@ A aplicação inclui as seguintes operações CRUD para as entidades "Produtos" 
 
 1. **Criar Produto:**
     - Rota: `POST /api/produtos`
-    - Payload: `{ "nome": "Nome do Produto", "descricao": "Descrição do Produto", "preco": 100.00, "categoria_id": 1 }`
+    - Payload:
+    ```json
+    {
+        "nome": "Nome do Produto",
+        "descricao": "Descrição do Produto",
+        "preco": 100.00,
+        "categoria_id": 1
+    }
+    ```
 
 2. **Ler Produtos:**
     - Rota: `GET /api/produtos`
@@ -109,7 +113,15 @@ A aplicação inclui as seguintes operações CRUD para as entidades "Produtos" 
 
 4. **Atualizar Produto:**
     - Rota: `PUT /api/produtos/{id}`
-    - Payload: `{ "nome": "Nome do Produto", "descricao": "Descrição do Produto", "preco": 150.00, "categoria_id": 2 }`
+    - Payload:
+    ```json
+    {
+        "nome": "Nome do Produto",
+        "descricao": "Descrição do Produto",
+        "preco": 150.00,
+        "categoria_id": 2
+    }
+    ```
 
 5. **Deletar Produto:**
     - Rota: `DELETE /api/produtos/{id}`
@@ -119,7 +131,12 @@ A aplicação inclui as seguintes operações CRUD para as entidades "Produtos" 
 
 1. **Criar Categoria:**
     - Rota: `POST /api/categorias`
-    - Payload: `{ "nome": "Nome da Categoria" }`
+    - Payload:
+    ```json
+    {
+        "nome": "Nome da Categoria"
+    }
+    ```
 
 2. **Ler Categorias:**
     - Rota: `GET /api/categorias`
@@ -131,7 +148,12 @@ A aplicação inclui as seguintes operações CRUD para as entidades "Produtos" 
 
 4. **Atualizar Categoria:**
     - Rota: `PUT /api/categorias/{id}`
-    - Payload: `{ "nome": "Nome da Categoria Atualizada" }`
+    - Payload:
+    ```json
+    {
+        "nome": "Nome da Categoria Atualizada"
+    }
+    ```
 
 5. **Deletar Categoria:**
     - Rota: `DELETE /api/categorias/{id}`
@@ -144,4 +166,12 @@ A aplicação inclui as seguintes operações CRUD para as entidades "Produtos" 
 
 ## 📚 Documentação da API
 
-A documentação da API foi feita utilizando o **Postman**. Você pode importar a coleção de requests do Postman para testar as APIs.
+A documentação da API foi feita utilizando o **Postman**. Você pode importar a coleção de requests do Postman para
+testar as APIs.
+
+[Clique aqui para baixar a coleção de requests do Postman](https://www.postman.com/zyrris01777/voz-backend-teste/collection/rzlt2jz/voz-backend-test)
+
+Você pode testar a coleção acima usando o endpoint: `https://voz.alan01777.tech`
+
+Também é possível testar localmente em `http://localhost:8080` (caso tenha feito a instalação com docker), ou em
+`http://localhost:8000` (caso não esteja usando o docker).
