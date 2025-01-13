@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Contracts\Services\CategoriasServiceInterface;
 use App\Exceptions\Repositories\Categoria\CategoriaNotCreatedException;
-use App\Exceptions\Repositories\Categoria\CategoriaNotDeletedException;
 use App\Exceptions\Repositories\Categoria\CategoriaNotFoundException;
 use App\Exceptions\Repositories\Categoria\CategoriaNotUpdatedException;
 use App\Http\Controllers\Controller;
@@ -46,7 +45,6 @@ class CategoriasController extends Controller
      *
      * @param int $id
      * @return JsonResponse
-     * @throws CategoriaNotFoundException
      */
     public function show(int $id): JsonResponse
     {
@@ -63,7 +61,6 @@ class CategoriasController extends Controller
      *
      * @param Request $request
      * @return JsonResponse
-     * @throws CategoriaNotCreatedException
      */
     public function store(Request $request): JsonResponse
     {
@@ -82,8 +79,6 @@ class CategoriasController extends Controller
      * @param Request $request
      * @param int $id
      * @return JsonResponse
-     * @throws CategoriaNotFoundException
-     * @throws CategoriaNotUpdatedException
      */
     public function update(Request $request, int $id): JsonResponse
     {
@@ -103,8 +98,6 @@ class CategoriasController extends Controller
      *
      * @param int $id
      * @return JsonResponse
-     * @throws CategoriaNotFoundException
-     * @throws CategoriaNotDeletedException
      */
     public function destroy(int $id): JsonResponse
     {
@@ -113,8 +106,6 @@ class CategoriasController extends Controller
             return response()->json(null, ResponseAlias::HTTP_NO_CONTENT);
         } catch (CategoriaNotFoundException $e) {
             return response()->json(['error' => ['type' => 'CategoriaNotFound', 'message' => $e->getMessage(), 'code' => $e->getCode()]], ResponseAlias::HTTP_NOT_FOUND);
-        } catch (CategoriaNotDeletedException $e) {
-            return response()->json(['error' => ['type' => 'CategoriaNotDeleted', 'message' => $e->getMessage(), 'code' => $e->getCode()]], ResponseAlias::HTTP_BAD_REQUEST);
         }
     }
 }
